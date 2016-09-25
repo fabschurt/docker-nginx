@@ -1,7 +1,7 @@
 # Docker Nginx
 
 This is a basic Docker Nginx image, with a simple and clean configuration. Just
-build your image `FROM` this base image and copy some virtual host config files
+build your image `FROM` this base image and `COPY` some virtual host config files
 to the right container directory and you’re all set&nbsp;:
 
 ```
