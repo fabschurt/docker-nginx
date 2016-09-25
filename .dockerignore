@@ -1,0 +1,5 @@
+.git/
+Dockerfile
+.editorconfig
+.gitattributes
+**/.DS_Store
