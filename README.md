@@ -9,7 +9,7 @@ FROM fabschurt/nginx
 
 […]
 
-COPY app/config/nginx/app.conf /etc/nginx/conf.d/app.conf
+COPY app/config/nginx/app.conf /etc/nginx/servers.d/app.conf
 ```
 
 ## License
