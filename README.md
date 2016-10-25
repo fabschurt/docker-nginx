@@ -1,9 +1,10 @@
 # Docker Nginx
 
 This is a Docker Nginx base image, with a simple and clean configuration. You
-can’t use it as is, because the base config doesn’t define any default server.
-Instead, you must build your own image `FROM` this base image and `COPY` some
-virtual host config files to the right directory in the container&nbsp;:
+can’t use it as is, because the default server defined in the config simply
+sends a 403 response back without serving anything. Instead, you must build your
+own image `FROM` this base image and `COPY` some virtual host config files to
+the right directory in the container&nbsp;:
 
 ```
 FROM fabschurt/nginx
