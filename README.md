@@ -1,17 +1,37 @@
-# Docker Nginx
+# Docker Nginx (1.10)
 
-This is a Docker Nginx base image, with a simple and clean configuration. You
-can’t use it as is, because the default server defined in the config simply
-sends a 403 response back without serving anything. Instead, you must build your
-own image `FROM` this base image and `COPY` some virtual host config files to
-the right directory in the container&nbsp;:
+This is a Docker Nginx base image, with a simple and clean configuration. *gzip*
+compression is pre-configured for a sensible list of file types, and static file
+serving is optimized via *sendfile* and *tcp_nopush* directives.
+
+*Important&nbsp;:* **you can’t use this image as is**&nbsp;; there is a default
+server defined, but it always returns a 404 response. Instead, **you must build
+your own image `FROM` this base image**, and `COPY` some local virtual host config
+files to the `/etc/nginx/conf.d` directory in the container&nbsp;:
 
 ```
 FROM fabschurt/nginx
 
 […]
 
-COPY app/config/nginx/app.conf /etc/nginx/servers.d/app.conf
+COPY config/nginx/app.conf /etc/nginx/conf.d/app.conf
+```
+
+*Note&nbsp;:* these config files MUST have a `*.conf` extension.
+
+*Important&nbsp;:* if any of your virtual hosts is supposed to act as a
+«catch-all» server (meaning that it has no valid server name attached and
+is meant to serve all requests for the host/port it listens to), you MUST
+explicitly define it as the default server for the concerned host/port
+(otherwise the default 404-responding server will be used instead)&nbsp;:
+
+```
+server {
+    listen 80 default_server;
+    server_name _;
+
+    […]
+}
 ```
 
 ## License
