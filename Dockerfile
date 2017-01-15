@@ -7,6 +7,7 @@ RUN apk update --no-cache && \
     rm -rf /etc/nginx/conf.d/* \
            /var/cache/apk/*
 COPY config/nginx.conf /etc/nginx
+ONBUILD COPY config/nginx/*.conf /etc/nginx/conf.d/
 
 EXPOSE 80
 CMD ["nginx"]
