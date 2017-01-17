@@ -6,24 +6,21 @@ serving is optimized via *sendfile* and *tcp_nopush* directives.
 
 *Important&nbsp;:* **you can’t use this image as is**&nbsp;; there is a default
 server defined, but it always returns a 404 response. Instead, **you must build
-your own image `FROM` this base image**, and `COPY` some local virtual host config
-files to the `/etc/nginx/conf.d` directory in the container&nbsp;:
+your own image `FROM` this base image** and create some `*.conf` vhost files in
+the `config/nginx` directory of your context root (an `ONBUILD` trigger will
+copy them into the `/etc/nginx/conf.d` directory of the container)&nbsp;:
 
 ```
 FROM fabschurt/nginx
 
 […]
-
-COPY config/nginx/app.conf /etc/nginx/conf.d/app.conf
 ```
 
-*Note&nbsp;:* these config files MUST have a `*.conf` extension.
-
-*Important&nbsp;:* if any of your virtual hosts is supposed to act as a
-«catch-all» server (meaning that it has no valid server name attached and
-is meant to serve all requests for the host/port it listens to), you MUST
-explicitly define it as the default server for the concerned host/port
-(otherwise the default 404-responding server will be used instead)&nbsp;:
+*Important&nbsp;:* if any of your virtual hosts is supposed to act as a «catch-all»
+server (meaning that it has no valid server name attached and is meant to serve
+all requests for the host/port it listens to), you MUST explicitly define it as
+the default server for the concerned host/port (otherwise the default 404-responding
+server will be used instead)&nbsp;:
 
 ```
 server {
