@@ -22,8 +22,8 @@ COPY config/nginx/some_server_config.conf /etc/nginx/conf.d/
 ```
 
 **Important note #2:** if any of your virtual hosts is supposed to act as a
-«catch-all» server (meaning that it has no valid server name attached and is
-meant to serve all requests for the host/port it listens to), you *must*
+«catch-all» server (meaning that there is no valid server name defined for it
+and it is meant to serve all requests for the host/port it listens to), you *must*
 explicitly define it as the *default server* for the concerned host/port
 (otherwise the default 404-responding server will be matched instead):
 
