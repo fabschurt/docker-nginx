@@ -5,5 +5,4 @@ COPY config/nginx.conf /etc/nginx/
 
 RUN rm /etc/nginx/conf.d/*
 
-EXPOSE 80
 EXPOSE 443
