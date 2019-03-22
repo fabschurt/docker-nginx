@@ -8,9 +8,9 @@ and clean configuration.
 types, and static file serving is optimized thanks to the use of the  *sendfile*
 and *tcp_nopush* directives.
 
-**Important note #1:** you can’t use this image as is; there is a default server
-defined, but it will always return a 404 response. Instead, you must build your
-own image `FROM` this base image, and `COPY` your server config file(s) into the
+**You can’t use this image as is**; there is a default server defined, but it
+will always return a 404 response. Instead, you must build your own image `FROM`
+this base image, and `COPY` your `server` config file(s) into the
 `/etc/nginx/conf.d` directory:
 
 ```
@@ -21,11 +21,11 @@ COPY config/nginx/some_server_config.conf /etc/nginx/conf.d/
 # …
 ```
 
-**Important note #2:** if any of your virtual hosts is supposed to act as a
-«catch-all» server (meaning that there is no valid server name defined for it
-and it is meant to serve all requests for the host/port it listens to), you *must*
-explicitly define it as the *default server* for the concerned host/port
-(otherwise the default 404-responding server will be matched instead):
+If any of your virtual hosts is supposed to act as a «catch-all» server (meaning
+that there is no valid server name defined for it and it is meant to serve all
+requests for the host/port it listens to), you *must* explicitly define it as
+the *default server* for the concerned host/port (otherwise the default
+404-responding server will be matched instead):
 
 ```
 server {
