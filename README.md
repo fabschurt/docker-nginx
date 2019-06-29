@@ -5,7 +5,7 @@ This is an Nginx base Docker image (itself being derived from the
 and clean configuration.
 
 *gzip* compression is pre-configured and enabled for a sensible list of file
-types, and static file serving is optimized thanks to the use of the  *sendfile*
+types, and static file serving is optimized thanks to the use of the *sendfile*
 and *tcp_nopush* directives.
 
 **You can’t use this image as is**; there is a default server defined, but it
