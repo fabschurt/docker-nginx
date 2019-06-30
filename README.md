@@ -1,4 +1,4 @@
-# Docker Nginx (1.15)
+# Docker Nginx 1.17
 
 This is an Nginx base Docker image (itself being derived from the
 [official Nginx image](https://hub.docker.com/_/nginx)), with a simple
